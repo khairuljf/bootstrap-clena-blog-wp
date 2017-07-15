@@ -1,0 +1,21 @@
+/*
+theme name: Start Boostrap WordPress Theme;
+author: khairul islam;
+author uri: www.khairuljf.com;
+version: 1.0;
+
+
+*/
+
+
+nav{
+    margin-top: 20px!important;
+}
+
+.menu ul li{
+  float: left;  
+}
+.navbar-brand img{
+    width: 40px;
+}
+
