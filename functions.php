@@ -74,47 +74,17 @@ function boostrap_started_script() {
 add_action('wp_enqueue_scripts', 'boostrap_started_script');
 
 
-/* Inlcule another file */
+/* Inlcule navwalker file */
 
 include 'navwalker.php';
+
+/* Inlcule Redux Framework file */
 include 'library/ReduxCore/framework.php';
 include 'library/sample/sample-config.php';
 
-
-
-
-/* meta box add */
-
-
-
-
-function cd_meta_box_add()
-{
-    add_meta_box( 'my-title-id', 'Title meta box', 'cd_meta_box_cb', 'page', 'normal', 'high' );
-     add_meta_box( 'my-desc-id', 'Description Meta Box', 'cd_meta_box_desc_cb', 'page', 'normal', 'high' );
-      add_meta_box( 'my-img-id', 'Images Meta Box', 'cd_meta_box_img_cb', 'page', 'normal', 'high' );
-}
-add_action( 'add_meta_boxes', 'cd_meta_box_add' );
-
-/*outpur value*/
-
-function cd_meta_box_cb($post)
-{ 
-    ?>
-
-<label for="title">Page Title</label>
-<input type="text" name="page_title" class="widefat" id="title" value="<?php echo get_post_meta($post->ID,'page_title',true) ?>"  >
-<?php
-}
-
-
-/*Update value*/
-
-function  title_update($post_id){
-    update_post_meta($post_id,'page_title',$_POST['page_title']);
-}
-
-add_action('save_post','title_update');
+/*Include CMB2 meta box */
+include 'metabox/init.php';
+include 'metabox/functions.php';
 
 
 
@@ -122,33 +92,7 @@ add_action('save_post','title_update');
 
 
 
-function cd_meta_box_desc_cb($post)
-{
-    ?>
 
-<label for="desc"></label>
-<input type="text" name="desc" class="widefat" value="<?php echo get_post_meta($post->ID,'desc', true) ?>"  >
-     
-<?php
-}
-
-function des_output($post_id){
-    update_post_meta($post_id,'desc',$_POST['desc']);
-}
-
-add_action('save_post','des_output');
-
-
-
-function cd_meta_box_img_cb()
-{ ?>
-
-<label>Upload Header image</label>
-
-
-
-    <?php
-}
 
 
 ?>

@@ -9,7 +9,21 @@ get_header();
 
 
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/contact-bg.jpg')">
+<?php
+
+$prefix = 'clean_';
+$header_img  = get_post_meta( get_the_ID(), $prefix . 'image', true );
+ if($header_img==""){
+	?>
+	 <header class="intro-header" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/contact-bg.jpg')">
+	<?php }
+else { ?>
+	<header class="intro-header" style="background-image: url('<?php echo $header_img ?>')">
+	
+	<?php
+}
+
+ ?>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
