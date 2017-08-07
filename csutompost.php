@@ -24,13 +24,21 @@ else { ?>
 }
 
  ?>
+				
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="page-heading">
-                         <h1><?php echo get_post_meta($post->ID,'page_title',true) ?></h1>
+                         <h1><?php 
+						 
+						 
+
+						$title  = get_post_meta( get_the_ID(), $prefix . 'heading-text', true );
+						$subtitle  = get_post_meta( get_the_ID(), $prefix . 'subtitle-text', true );
+
+						 echo $title  ?></h1>
                         <hr class="small">
-                        <span class="subheading"><?php echo get_post_meta($post->ID,'desc', true) ?></span>
+                        <span class="subheading"><?php echo $subtitle  ?></span>
                     </div>
                 </div>
             </div>
@@ -42,11 +50,20 @@ else { ?>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class=" ">
-                <?php while (have_posts()): the_post(); ?>
+				
+				<?php  
+					$post_store = new WP_Query(array(
+						'post_type'=>'movies',
+						'posts_per_pages'=>5,
+					));
+
+				?>
+				
+                <?php while ($post_store->have_posts()): $post_store->the_post(); ?>
 
 
 
-
+					<h1><?php the_title(); ?></h1>
 
                     <?php the_content(); ?>
 

@@ -88,7 +88,46 @@ include 'metabox/functions.php';
 
 
 
+/* Register custom post*/
 
+
+function create_posttype() {
+
+	register_post_type( 'movies',
+	// CPT Options
+		array(
+			'labels' => array(
+				'name' => __( 'Movies' ),
+				'singular_name' => __( 'Movie' )
+			),
+			'public' => true,
+
+		)
+	);
+	
+	/* Register taxonony include Custom  post*/
+	
+	register_taxonomy( 'category', 'movies', array(
+		'labels'=> array(
+			'name'=>'Category custom',
+		),
+		'public'=>true,
+		'hierarchical'=>true,
+	)
+	);
+	register_taxonomy( 'topic', 'movies', array(
+		'labels'=> array(
+			'name'=>'Custom Topic',
+		),
+		'public'=>true,
+		
+	)
+	);
+	
+}
+
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );
 
 
 
